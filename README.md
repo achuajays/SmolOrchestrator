@@ -80,7 +80,7 @@ Modern agent systems often require **human approvals or feedback** before execut
 ```bash
 # Clone the repository
 git clone https://github.com/achuajays/SmolOrchestrator.git
-cd human-in-loop-system
+cd SmolOrchestrator
 
 # Install dependencies
 pip install -r requirements.txt
