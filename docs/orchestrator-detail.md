@@ -18,32 +18,32 @@ graph TB
         ContextEnhancer[🔍 Context Enhancer<br/>- Task enhancement<br/>- Context injection<br/>- Tool availability<br/>- Guidelines addition]
         
         %% Tool Registry
-        subgraph ToolRegistry[🔧 Built-in Tools Registry]
-            ApprovalTool[🤝 ApprovalRequiredTool<br/>**Purpose**: Request human approval<br/>**Inputs**: title, description, type<br/>**Logic**: Creates approval request<br/>**Returns**: Approval response data]
+        subgraph ToolRegistry["🔧 Built-in Tools Registry"]
+            ApprovalTool["🤝 ApprovalRequiredTool<br/>Purpose: Request human approval<br/>Inputs: title, description, type<br/>Logic: Creates approval request<br/>Returns: Approval response data"]
             
-            CheckpointTool[📍 CheckpointTool<br/>**Purpose**: Create state snapshots<br/>**Inputs**: name, description, step<br/>**Logic**: Calls state manager<br/>**Returns**: Checkpoint metadata]
+            CheckpointTool["📍 CheckpointTool<br/>Purpose: Create state snapshots<br/>Inputs: name, description, step<br/>Logic: Calls state manager<br/>Returns: Checkpoint metadata"]
             
-            RollbackTool[⏪ RollbackTool<br/>**Purpose**: Restore previous state<br/>**Inputs**: checkpoint name, reason<br/>**Logic**: State restoration<br/>**Returns**: Rollback confirmation]
+            RollbackTool["⏪ RollbackTool<br/>Purpose: Restore previous state<br/>Inputs: checkpoint name, reason<br/>Logic: State restoration<br/>Returns: Rollback confirmation"]
         end
         
         %% Execution Engine
-        subgraph ExecutionEngine[⚙️ Execution Engine]
-            WorkflowExec[📝 Workflow Execution<br/>**Method**: execute_workflow()<br/>**Logic**: Step-by-step processing<br/>**Features**: Error handling, state updates]
+        subgraph ExecutionEngine["⚙️ Execution Engine"]
+            WorkflowExec["📝 Workflow Execution<br/>Method: execute_workflow()<br/>Logic: Step-by-step processing<br/>Features: Error handling, state updates"]
             
-            StepExec[🔄 Step Execution<br/>**Method**: _execute_single_step()<br/>**Types**: task, approval, checkpoint<br/>**Logic**: Type-specific handling]
+            StepExec["🔄 Step Execution<br/>Method: _execute_single_step()<br/>Types: task, approval, checkpoint<br/>Logic: Type-specific handling"]
             
-            ApprovalHandler[✋ Approval Handler<br/>**Method**: _handle_step_approval()<br/>**Logic**: Approval requirement check<br/>**Features**: Async waiting, timeout]
+            ApprovalHandler["✋ Approval Handler<br/>Method: _handle_step_approval()<br/>Logic: Approval requirement check<br/>Features: Async waiting, timeout"]
             
-            ContextInjector[💉 Context Injector<br/>**Method**: _enhance_task_with_context()<br/>**Logic**: Context string building<br/>**Features**: Tool descriptions, guidelines]
+            ContextInjector["💉 Context Injector<br/>Method: _enhance_task_with_context()<br/>Logic: Context string building<br/>Features: Tool descriptions, guidelines"]
         end
         
         %% State Integration
-        subgraph StateIntegration[📊 State Integration]
-            StateSync[🔄 State Synchronization<br/>**Method**: create_workflow()<br/>**Logic**: Initial state creation<br/>**Features**: Metadata tracking]
+        subgraph StateIntegration["📊 State Integration"]
+            StateSync["🔄 State Synchronization<br/>Method: create_workflow()<br/>Logic: Initial state creation<br/>Features: Metadata tracking"]
             
-            ProgressTracker[📈 Progress Tracking<br/>**Method**: update_workflow_state()<br/>**Logic**: Step progress updates<br/>**Features**: Real-time monitoring]
+            ProgressTracker["📈 Progress Tracking<br/>Method: update_workflow_state()<br/>Logic: Step progress updates<br/>Features: Real-time monitoring"]
             
-            CompletionHandler[✅ Completion Handler<br/>**Method**: _update_workflow_completion()<br/>**Logic**: Final state updates<br/>**Features**: Result storage]
+            CompletionHandler["✅ Completion Handler<br/>Method: _update_workflow_completion()<br/>Logic: Final state updates<br/>Features: Result storage"]
         end
     end
     
@@ -88,29 +88,29 @@ graph TB
     Agent --> HFModel
     
     %% Configuration Flow
-    subgraph Config[⚙️ Configuration System]
-        ModelConfig[🔧 Model Configuration<br/>**Structure**: Dictionary<br/>**Keys**: provider, model_id<br/>**Purpose**: LLM setup]
+    subgraph Config["⚙️ Configuration System"]
+        ModelConfig["🔧 Model Configuration<br/>Structure: Dictionary<br/>Keys: provider, model_id<br/>Purpose: LLM setup"]
         
-        AgentConfig[🤖 Agent Configuration<br/>**Types**: CodeAgent, ToolCallingAgent<br/>**Parameters**: max_steps, imports<br/>**Purpose**: Agent behavior]
+        AgentConfig["🤖 Agent Configuration<br/>Types: CodeAgent, ToolCallingAgent<br/>Parameters: max_steps, imports<br/>Purpose: Agent behavior"]
         
-        ToolConfig[🔧 Tool Configuration<br/>**Registry**: Built-in tools<br/>**Extension**: Additional tools<br/>**Purpose**: Capability expansion]
+        ToolConfig["🔧 Tool Configuration<br/>Registry: Built-in tools<br/>Extension: Additional tools<br/>Purpose: Capability expansion"]
         
-        ChannelConfig[📡 Channel Configuration<br/>**Slack**: Bot token, secrets<br/>**Email**: SMTP/SendGrid config<br/>**Purpose**: Multi-channel setup]
+        ChannelConfig["📡 Channel Configuration<br/>Slack: Bot token, secrets<br/>Email: SMTP/SendGrid config<br/>Purpose: Multi-channel setup"]
     end
     
     Config --> Orchestrator
     
     %% Method Details
-    subgraph Methods[📋 Key Methods Explained]
-        CreateWF[create_workflow()<br/>**Purpose**: Initialize new workflow<br/>**Steps**: 1. Create DB record<br/>2. Set initial state<br/>3. Log creation event<br/>**Returns**: Workflow object]
+    subgraph Methods["📋 Key Methods Explained"]
+        CreateWF["create_workflow()<br/>Purpose: Initialize new workflow<br/>Steps: 1. Create DB record<br/>2. Set initial state<br/>3. Log creation event<br/>Returns: Workflow object"]
         
-        ExecWF[execute_workflow()<br/>**Purpose**: Run workflow steps<br/>**Steps**: 1. Set running status<br/>2. Process each step<br/>3. Handle approvals<br/>4. Update completion<br/>**Returns**: Execution result]
+        ExecWF["execute_workflow()<br/>Purpose: Run workflow steps<br/>Steps: 1. Set running status<br/>2. Process each step<br/>3. Handle approvals<br/>4. Update completion<br/>Returns: Execution result"]
         
-        RequestApproval[request_human_approval()<br/>**Purpose**: Pause for human input<br/>**Steps**: 1. Create approval request<br/>2. Send notifications<br/>3. Wait for response<br/>4. Resume execution<br/>**Returns**: Approval data]
+        RequestApproval["request_human_approval()<br/>Purpose: Pause for human input<br/>Steps: 1. Create approval request<br/>2. Send notifications<br/>3. Wait for response<br/>4. Resume execution<br/>Returns: Approval data"]
         
-        CreateCheckpoint[create_checkpoint()<br/>**Purpose**: Save state snapshot<br/>**Steps**: 1. Capture current state<br/>2. Store in database<br/>3. Log checkpoint event<br/>**Returns**: Checkpoint object]
+        CreateCheckpoint["create_checkpoint()<br/>Purpose: Save state snapshot<br/>Steps: 1. Capture current state<br/>2. Store in database<br/>3. Log checkpoint event<br/>Returns: Checkpoint object"]
         
-        RollbackWF[rollback_workflow()<br/>**Purpose**: Restore previous state<br/>**Steps**: 1. Find target checkpoint<br/>2. Restore state data<br/>3. Cancel pending approvals<br/>4. Log rollback event<br/>**Returns**: Restored workflow]
+        RollbackWF["rollback_workflow()<br/>Purpose: Restore previous state<br/>Steps: 1. Find target checkpoint<br/>2. Restore state data<br/>3. Cancel pending approvals<br/>4. Log rollback event<br/>Returns: Restored workflow"]
     end
     
     %% Styling
