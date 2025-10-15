@@ -1,0 +1,46 @@
+# Core SmolAgents and AI
+smolagents[toolkit]==1.22.0
+transformers>=4.30.0
+torch>=2.0.0
+
+# Database and State Management
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+alembic>=1.12.0
+
+# Web Framework and API
+fastapi>=0.100.0
+uvicorn>=0.20.0
+websockets>=11.0.0
+pydantic>=2.0.0
+jinja2>=3.1.0
+
+# Background Tasks and Events
+celery>=5.3.0
+redis>=4.5.0
+asyncio-mqtt>=0.11.0
+
+# Multi-channel Integrations
+slack-sdk>=3.21.0
+slack-bolt>=1.18.0
+sendgrid>=6.10.0
+email-validator>=2.0.0
+
+# Frontend and UI
+streamlit>=1.28.0
+gradio>=3.40.0
+
+# Utilities and Monitoring
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0
+structlog>=23.0.0
+prometheus-client>=0.17.0
+opentelemetry-api>=1.20.0
+opentelemetry-sdk>=1.20.0
+
+# Development and Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+isort>=5.12.0
+mypy>=1.5.0
